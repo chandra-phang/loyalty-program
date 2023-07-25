@@ -1,4 +1,16 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# == Schema Information
+#
+# Table name: tiers
+#
+#  id               :bigint           not null, primary key
+#  name             :string
+#  rank             :integer
+#  bottom_threshold :float
+#  upper_threshold  :float
+#  image_url        :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
 
 one:
   name: MyString
