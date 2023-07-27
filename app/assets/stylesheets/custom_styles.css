@@ -1,0 +1,92 @@
+/* styles.css */
+/* Custom styling for the horizontal line */
+
+th {
+  text-align: center;
+  background-color: #0085f230;
+}
+
+td {
+  background-color: white;
+}
+
+.pagination {
+  display: flex;
+  justify-content: right;
+}
+
+.pagination a, .pagination span.current, .pagination span.gap {
+  float: left;
+  padding: 0 14px;
+  line-height: 38px;
+  text-decoration: none;
+  background-color: white;
+  border: 1px solid #DDD;
+  border-right-width: 0;
+}
+
+.pagination {
+  border-right: 1px solid #ddd;
+  .first{
+      padding : 0;
+      float: none;
+      border: none;
+  }
+  .prev {
+      padding : 0;
+      float: none;
+      border: none;
+  }
+  .page{
+      padding : 0;
+      float: none;
+      border: none;
+  }
+  .next{
+      padding : 0;
+      float: none;
+      border: none;
+  }
+  .last{
+      padding : 0;
+      float: none;
+      border: none;
+  }
+}
+
+.inline-button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.primary-button {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 5px;
+  border: 1px solid #007bff;
+}
+
+.primary-button:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+.primary-button:visited {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.text-center {
+  text-align: center;
+}

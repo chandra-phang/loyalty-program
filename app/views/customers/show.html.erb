@@ -1,2 +1,47 @@
-<h1>Customers#show</h1>
-<p>Find me in app/views/customers/show.html.erb</p>
+<h3>Customer detail</h3>
+
+<div class='inline-button-container'>
+  <%= link_to 'Back', customers_path, class: 'float-left primary-button' %>
+  <%= link_to 'Order List', customer_orders_path(@customer), class: 'float-right primary-button' %>
+</div>
+
+<p>
+  <b>ID:</b>
+  <%=h @customer.customer_ref %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @customer.name %>
+</p>
+
+<p>
+  <b>Start date of the tier calculation:</b>
+  <%=h format_date(@period.start_at) %>
+</p>
+
+<table>
+  <tr>
+    <td>Current tier: <%=h @customer.tier.name %></td>
+    <td>Amount spent: <%=h number_to_currency(@customer.spend_amount) %></td>
+
+  </tr>
+
+  <tr>
+    <td>Next tier: <%=h @customer.next_tier %></td>
+    <td>Amount to be spend to reach next tier: <%=h number_to_currency(@customer.amount_to_reach_next_tier) %></td>
+  </tr>
+</table>
+
+<p>
+  <b>Date of the downgrade:</b>
+  <%=h format_date(@period.end_at) %>
+</p>
+
+<table>
+  <tr>
+    <td>Next year tier: <%=h @customer.next_period_tier %></td>
+    <td>Amount required to maintain tier: <%=h number_to_currency(@customer.amount_required_to_maintain_tier) %></td>
+
+  </tr>
+</table>

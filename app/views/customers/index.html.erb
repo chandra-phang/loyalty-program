@@ -1,2 +1,28 @@
-<h1>Customers#index</h1>
-<p>Find me in app/views/customers/index.html.erb</p>
+<h3>Customer List</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Tier</th>
+      <th>Spend Amount</th>
+      <th colspan='2'>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.customer_ref %></td>
+        <td><%= customer.name %></td>
+        <td><%= customer.tier.name %></td>
+        <td><%= number_to_currency(customer.spend_amount) %></td>
+        <td><%= link_to 'Show', customer, class: 'primary-button text-center' %></td>
+        <td><%= link_to 'Order List', customer_orders_path(customer), class: 'primary-button text-center' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @customers %>

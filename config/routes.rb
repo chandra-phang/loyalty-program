@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  get 'completed_order/create'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  root "customers#index"
+  root 'customers#index'
 
-  get 'customers/index'
-  get 'customers/show'
+  resources :customers, only: %i[index show] do
+    resources :orders, only: [:index]
+  end
 
-  post 'completed_orders/report' => 'completed_orders#create'
+  # orders
+  post '/orders/report', to: 'orders#create'
 end
