@@ -9,10 +9,6 @@ class OrdersController < ApplicationController
     @orders = orders.page(params[:page])
   end
 
-  def new
-    @order = Order.new
-  end
-
   def create
     order = service.create_order(order_params)
     json_response(order)
