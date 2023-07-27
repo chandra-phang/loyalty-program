@@ -2,16 +2,19 @@
 #
 # Table name: customers
 #
-#  id                       :bigint           not null
-#  customer_ref             :string           primary key
-#  name                     :string
-#  tier_id                  :integer          not null
-#  spend_amount             :float
-#  next_period_spend_amount :float
-#  created_at               :datetime         not null
-#  updated_at               :datetime         not null
+#  id                               :bigint           not null
+#  customer_ref                     :string           primary key
+#  name                             :string
+#  tier_id                          :integer          not null
+#  spend_amount                     :float            default(0.0)
+#  next_tier                        :string
+#  amount_to_reach_next_tier        :float            default(0.0)
+#  next_period_tier                 :string
+#  amount_required_to_maintain_tier :float            default(0.0)
+#  created_at                       :datetime         not null
+#  updated_at                       :datetime         not null
 #
-require "test_helper"
+require 'test_helper'
 
 class CustomerTest < ActiveSupport::TestCase
   # test "the truth" do
