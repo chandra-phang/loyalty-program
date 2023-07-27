@@ -1,14 +1,14 @@
 # == Schema Information
 #
-# Table name: customer_tier_histories
+# Table name: periods
 #
-#  id           :bigint           not null, primary key
-#  customer_id  :integer
-#  period_id    :integer
-#  tier_id      :integer
-#  spend_amount :float
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id         :bigint           not null, primary key
+#  name       :string
+#  year       :integer
+#  start_at   :datetime
+#  end_at     :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 # This model initially had no columns defined. If you add columns to the
