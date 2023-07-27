@@ -1,0 +1,27 @@
+<h3><%= @customer.name %>'s order since <%= format_date(@period.start_at) %> :</h1>
+
+<div class='inline-button-container'>
+  <%= link_to 'Back to Customer Detail', @customer, class: 'float-left primary-button' %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Amount</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.order_ref %></td>
+        <td><%= number_to_currency(order.total_in_cents / 100) %></td>
+        <td><%= format_datetime(order.date) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @orders %>
