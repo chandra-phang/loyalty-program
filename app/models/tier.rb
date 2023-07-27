@@ -28,7 +28,7 @@ class Tier < ApplicationRecord
     return nil if rank == 1
 
     # no need to use ! because it will return nil for highest tier
-    find_by(rank: rank - 1)
+    Tier.find_by(rank: rank - 1)
   end
 
   def self.find_by_spend_amount(spend_amount)

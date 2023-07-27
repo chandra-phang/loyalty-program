@@ -17,6 +17,8 @@ class Order < ApplicationRecord
 
   belongs_to :customer, foreign_key: 'customer_ref'
 
+  validates :order_ref, :customer_ref, :total_in_cents, :date, presence: true
+
   scope :in_date_range, ->(start_at, end_at) {
     where(arel_table[:date].between(start_at..end_at))
   }

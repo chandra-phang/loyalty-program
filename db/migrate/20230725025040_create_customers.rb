@@ -1,8 +1,8 @@
 class CreateCustomers < ActiveRecord::Migration[7.0]
   def change
     create_table :customers do |t|
-      t.string :customer_ref
-      t.string :name
+      t.string :customer_ref, null: false
+      t.string :name, null: false
       t.integer :tier_id, null: false
       t.float :spend_amount, default: 0
       t.string :next_tier

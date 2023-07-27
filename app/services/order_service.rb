@@ -6,7 +6,6 @@ class OrderService
   end
 
   def create_order(params)
-    order = nil
     ActiveRecord::Base.transaction do
       # find or create customer based on customerId
       customer = @customer_service.find_or_create_customer(params[:customerId], params[:customerName])
@@ -18,11 +17,12 @@ class OrderService
       customer = @customer_service.calibrate_customer_tier(customer)
 
       customer.save!
+
+      order
     rescue StandardError => e
       raise e
     end
 
-    order
   end
 
   def get_orders_by_period(customer, period)

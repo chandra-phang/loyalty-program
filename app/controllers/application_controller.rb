@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   include Response
 
+  rescue_from StandardError do |e|
+    error_json(e, 422)
+  end
+
   def json_request
     request.format == 'application/json'
   end

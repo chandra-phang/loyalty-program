@@ -3,8 +3,8 @@
 # Table name: customers
 #
 #  id                               :bigint           not null
-#  customer_ref                     :string           primary key
-#  name                             :string
+#  customer_ref                     :string           not null, primary key
+#  name                             :string           not null
 #  tier_id                          :integer          not null
 #  spend_amount                     :float            default(0.0)
 #  next_tier                        :string

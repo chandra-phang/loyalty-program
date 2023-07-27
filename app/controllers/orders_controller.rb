@@ -10,8 +10,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = service.create_order(order_params)
-    json_response(order)
+    orders = service.create_order(order_params)
+    success_json(orders, 201)
   end
 
   private

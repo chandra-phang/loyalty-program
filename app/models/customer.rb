@@ -5,8 +5,8 @@
 # Table name: customers
 #
 #  id                               :bigint           not null
-#  customer_ref                     :string           primary key
-#  name                             :string
+#  customer_ref                     :string           not null, primary key
+#  name                             :string           not null
 #  tier_id                          :integer          not null
 #  spend_amount                     :float            default(0.0)
 #  next_tier                        :string
@@ -25,10 +25,13 @@ class Customer < ApplicationRecord
   has_many :customer_tier_histories, foreign_key: 'customer_ref'
   has_many :orders, foreign_key: 'customer_ref'
 
+  validates :customer_ref, :name, presence: true
+  validates :customer_ref, uniqueness: true
+
   scope :recently_updated, -> { order(updated_at: :desc).limit(20) }
 
   def self.create_customer(customer_ref, name)
-    Customer.create!(
+    create!(
       customer_ref: customer_ref,
       name: name,
       tier_id: Tier.default_tier.id
