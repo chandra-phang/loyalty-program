@@ -4,8 +4,11 @@ class CreateCustomers < ActiveRecord::Migration[7.0]
       t.string :customer_ref
       t.string :name
       t.integer :tier_id, null: false
-      t.float :spend_amount
-      t.float :next_period_spend_amount
+      t.float :spend_amount, default: 0
+      t.string :next_tier
+      t.float :amount_to_reach_next_tier, default: 0
+      t.string :next_period_tier
+      t.float :amount_required_to_maintain_tier, default: 0
 
       t.timestamps
     end

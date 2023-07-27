@@ -5,7 +5,6 @@ class CreateTiers < ActiveRecord::Migration[7.0]
       t.integer :rank
       t.float :bottom_threshold
       t.float :upper_threshold
-      t.string :image_url
 
       t.timestamps
     end
