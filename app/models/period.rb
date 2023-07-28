@@ -15,6 +15,9 @@
 class Period < ApplicationRecord
   has_many :customer_tier_histories
 
+  validates :name, :year, :start_at, :end_at, presence: true
+  validates :year, uniqueness: true
+
   def self.current_period
     find_by!(year: Time.zone.now.year)
   end

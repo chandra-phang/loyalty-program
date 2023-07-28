@@ -31,8 +31,8 @@ RSpec.describe Customer, type: :model do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:tier_id) }
 
-    let(:tier) { Tier.create!(name: 'Bronze', rank: 3) }
-    let(:customer) { Customer.new(name: 'John', customer_ref: 'C001', tier_id: tier.id) }
+    let!(:tier) { create(:tier) }
+    let(:customer) { build(:customer) }
 
     subject { customer }
     it { should validate_uniqueness_of(:customer_ref) }

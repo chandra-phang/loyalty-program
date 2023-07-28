@@ -13,6 +13,8 @@
 #  updated_at   :datetime         not null
 #
 class CustomerTierHistory < ApplicationRecord
+  validates :customer_ref, :period_id, :tier_id, presence: true
+
   belongs_to :customer, foreign_key: 'customer_ref'
   belongs_to :period
   belongs_to :tier
