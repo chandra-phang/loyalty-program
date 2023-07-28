@@ -40,7 +40,6 @@ RSpec.describe "Customers", type: :request do
       expect(response.body).to include(customer.tier.name)
     end
 
-
     it "returns an error response when id is invalid" do
       get "/customers/invalid_id"
 
