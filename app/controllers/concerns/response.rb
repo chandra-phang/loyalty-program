@@ -4,6 +4,6 @@ module Response
   end
 
   def error_json(message, status = :ok)
-    render json: { error: message }, status: status
+    render json: { errors: message }, status: status
   end
 end
