@@ -16,6 +16,9 @@ class Tier < ApplicationRecord
   has_many :customers
   has_many :customer_tier_histories
 
+  validates :name, :rank, presence: true
+  validates :rank, uniqueness: true
+
   scope :by_spend_amount, ->(spend_amount) {
     where('bottom_threshold <= ? AND upper_threshold > ?', spend_amount, spend_amount)
   }

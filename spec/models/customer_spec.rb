@@ -16,8 +16,8 @@
 #  created_at                       :datetime         not null
 #  updated_at                       :datetime         not null
 #
+
 require 'rails_helper'
-require 'shoulda/matchers'
 
 RSpec.describe Customer, type: :model do
   describe 'associations' do
@@ -32,28 +32,13 @@ RSpec.describe Customer, type: :model do
     it { should validate_presence_of(:tier_id) }
 
     let(:tier) { Tier.create!(name: 'Bronze', rank: 3) }
+    let(:customer) { Customer.new(name: 'John', customer_ref: 'C001', tier_id: tier.id) }
 
-    subject { Customer.new(name: 'John', customer_ref: 'C001', tier_id: tier.id) }
+    subject { customer }
     it { should validate_uniqueness_of(:customer_ref) }
 
     it 'is valid with customer_ref, name and tier_id' do
-      customer = Customer.new(name: 'John', customer_ref: 'C001', tier_id: tier.id)
       expect(customer).to be_valid
-    end
-
-    it 'is invalid without a name' do
-      customer = Customer.new(customer_ref: 'C001', tier_id: tier.id)
-      expect(customer).to_not be_valid
-    end
-
-    it 'is invalid without a customer_ref' do
-      customer = Customer.new(name: 'John', tier_id: tier.id)
-      expect(customer).to_not be_valid
-    end
-
-    it 'is invalid without a tier_id' do
-      customer = Customer.new(name: 'John', tier_id: tier.id)
-      expect(customer).to_not be_valid
     end
   end
 end
