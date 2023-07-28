@@ -22,10 +22,10 @@ class Customer < ApplicationRecord
   paginates_per 10
 
   belongs_to :tier
-  has_many :customer_tier_histories, foreign_key: 'customer_ref'
   has_many :orders, foreign_key: 'customer_ref'
+  has_many :customer_tier_histories, foreign_key: 'customer_ref'
 
-  validates :customer_ref, :name, presence: true
+  validates :customer_ref, :name, :tier_id, presence: true
   validates :customer_ref, uniqueness: true
 
   scope :recently_updated, -> { order(updated_at: :desc).limit(20) }

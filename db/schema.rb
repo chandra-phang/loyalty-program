@@ -15,13 +15,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_061408) do
   enable_extension "plpgsql"
 
   create_table "customer_tier_histories", force: :cascade do |t|
-    t.integer "customer_id"
+    t.string "customer_ref"
     t.integer "period_id"
     t.integer "tier_id"
     t.float "spend_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id", "period_id"], name: "customer_period_index", unique: true
+    t.index ["customer_ref", "period_id"], name: "customer_period_index", unique: true
   end
 
   create_table "customers", force: :cascade do |t|
@@ -68,7 +68,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_061408) do
     t.index ["rank"], name: "index_tiers_on_rank"
   end
 
-  add_foreign_key "customer_tier_histories", "customers"
   add_foreign_key "customer_tier_histories", "periods"
   add_foreign_key "customer_tier_histories", "tiers"
   add_foreign_key "customers", "tiers"
