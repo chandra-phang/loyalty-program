@@ -19,12 +19,12 @@ class Tier < ApplicationRecord
   validates :name, :rank, presence: true
   validates :rank, uniqueness: true
 
-  scope :by_spend_amount, ->(spend_amount) {
+  scope :by_spend_amount, lambda { |spend_amount|
     where('bottom_threshold <= ? AND upper_threshold > ?', spend_amount, spend_amount)
   }
 
   def self.default_tier
-    find_by!(rank: self.maximum(:rank))
+    find_by!(rank: maximum(:rank))
   end
 
   def find_next_tier
@@ -35,7 +35,7 @@ class Tier < ApplicationRecord
   end
 
   def self.find_by_spend_amount(spend_amount)
-    tiers = self.by_spend_amount(spend_amount)
+    tiers = by_spend_amount(spend_amount)
     raise ActiveModel::StrictValidationFailed, 'Tier is not found' if tiers.empty?
 
     tiers.first

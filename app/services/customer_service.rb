@@ -31,7 +31,7 @@ class CustomerService
       customer.next_tier = next_tier.name
       customer.amount_to_reach_next_tier = next_tier.bottom_threshold - customer.spend_amount
     else
-      customer.next_tier = "-"
+      customer.next_tier = '-'
       customer.amount_to_reach_next_tier = 0
     end
 

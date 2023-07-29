@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Customers", type: :request do
-
+RSpec.describe 'Customers', type: :request do
   before do
     create(:period)
     create(:period, :next_period)
@@ -11,20 +12,20 @@ RSpec.describe "Customers", type: :request do
   let!(:silver) { create(:tier, :silver) }
   let!(:gold) { create(:tier, :gold) }
   let!(:customer) { create(:customer) }
-  let(:valid_params) {
+  let(:valid_params) do
     # the default date here is 1 year ago, so we can test next_period case
     {
       customerId: customer.customer_ref,
       customerName: customer.name,
-      orderId: "O-01",
+      orderId: 'O-01',
       totalInCents: 1000,
       date: (Time.zone.now - 1.year).iso8601(3)
     }
-  }
+  end
 
-  describe "POST /orders/report" do
-    context "when params is valid" do
-      it "returns a successful response" do
+  describe 'POST /orders/report' do
+    context 'when params is valid' do
+      it 'returns a successful response' do
         post '/orders/report', params: valid_params
 
         expected_body = {
@@ -38,7 +39,7 @@ RSpec.describe "Customers", type: :request do
         expect(response_body).to include(expected_body)
       end
 
-      it "calibrate customer record correctly" do
+      it 'calibrate customer record correctly' do
         params = valid_params
         post '/orders/report', params: params
 
@@ -53,7 +54,7 @@ RSpec.describe "Customers", type: :request do
         expect(customer.amount_required_to_maintain_tier).to eq(0)
 
         second_params = valid_params
-        second_params[:orderId] = "O-02"
+        second_params[:orderId] = 'O-02'
         second_params[:totalInCents] = 9000
         second_params[:date] = Time.zone.now.iso8601
         post '/orders/report', params: second_params
@@ -71,7 +72,7 @@ RSpec.describe "Customers", type: :request do
 
       it "will update customer's name" do
         params = valid_params
-        params[:customerName] = "New name"
+        params[:customerName] = 'New name'
 
         post '/orders/report', params: params
         expect(response).to have_http_status(201)
@@ -81,8 +82,8 @@ RSpec.describe "Customers", type: :request do
       end
     end
 
-    context "when params is invalid" do
-      it "returns an error when customerId is empty" do
+    context 'when params is invalid' do
+      it 'returns an error when customerId is empty' do
         invalid_params = valid_params.except(:customerId)
         post '/orders/report', params: invalid_params
 
@@ -91,7 +92,7 @@ RSpec.describe "Customers", type: :request do
         expect(response_body).to eq(expected_body)
       end
 
-      it "returns an error when customerName is empty" do
+      it 'returns an error when customerName is empty' do
         invalid_params = valid_params.except(:customerName)
         post '/orders/report', params: invalid_params
 
@@ -100,7 +101,7 @@ RSpec.describe "Customers", type: :request do
         expect(response_body).to eq(expected_body)
       end
 
-      it "returns an error when orderId is empty" do
+      it 'returns an error when orderId is empty' do
         invalid_params = valid_params.except(:orderId)
         post '/orders/report', params: invalid_params
 
@@ -109,7 +110,7 @@ RSpec.describe "Customers", type: :request do
         expect(response_body).to eq(expected_body)
       end
 
-      it "returns an error when totalInCents is empty" do
+      it 'returns an error when totalInCents is empty' do
         invalid_params = valid_params.except(:totalInCents)
         post '/orders/report', params: invalid_params
 
@@ -118,7 +119,7 @@ RSpec.describe "Customers", type: :request do
         expect(response_body).to eq(expected_body)
       end
 
-      it "returns an error when date is empty" do
+      it 'returns an error when date is empty' do
         invalid_params = valid_params.except(:date)
         post '/orders/report', params: invalid_params
 
@@ -129,8 +130,8 @@ RSpec.describe "Customers", type: :request do
     end
   end
 
-  describe "GET /customers/:id/orders" do
-    it "returns a successful response" do
+  describe 'GET /customers/:id/orders' do
+    it 'returns a successful response' do
       post '/orders/report', params: valid_params
       expect(response).to have_http_status(201)
 
@@ -144,14 +145,14 @@ RSpec.describe "Customers", type: :request do
       expect(response.body).to include((order.total_in_cents / 100).to_s)
     end
 
-    it "not returns error when orders is empty" do
+    it 'not returns error when orders is empty' do
       get "/customers/#{customer.customer_ref}/orders"
 
       expect(response).to have_http_status(200)
     end
 
-    it "returns an error when customer_id is invalid" do
-      get "/customers/invalid_id/orders"
+    it 'returns an error when customer_id is invalid' do
+      get '/customers/invalid_id/orders'
 
       expected_body = { errors: "Couldn't find Customer with 'customer_ref'=invalid_id" }
       expect(response).to have_http_status(422)

@@ -1,3 +1,17 @@
+# frozen_string_literal: true
+
+# == Schema Information
+#
+# Table name: periods
+#
+#  id         :bigint           not null, primary key
+#  name       :string
+#  year       :integer
+#  start_at   :datetime
+#  end_at     :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe Period, type: :model do

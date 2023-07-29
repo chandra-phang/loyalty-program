@@ -1,3 +1,17 @@
+# frozen_string_literal: true
+
+# == Schema Information
+#
+# Table name: customer_tier_histories
+#
+#  id           :bigint           not null, primary key
+#  customer_ref :string
+#  period_id    :integer
+#  tier_id      :integer
+#  spend_amount :float
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe CustomerTierHistory, type: :model do
