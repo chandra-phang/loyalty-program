@@ -1,24 +1,69 @@
-# README
+# Loyalty Program
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Install
 
-Things you may want to cover:
+### Clone the repository
 
-* Ruby version
+```shell
+git clone git@https://github.com/chandra-phang/loyalty-program.git
+cd loyalty-program
+```
 
-* System dependencies
+### Check your Ruby version
 
-* Configuration
+```shell
+ruby -v
+```
 
-* Database creation
+The ouput should start with something like `ruby 3.1.2`
 
-* Database initialization
+If not, install the right ruby version using [rbenv](https://github.com/rbenv/rbenv):
 
-* How to run the test suite
+```shell
+rbenv install 3.1.2
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### Install Postgres
 
-* Deployment instructions
+```shell
+brew install postgresql
+```
 
-* ...
+## Install dependencies
+
+Using [Bundler](https://github.com/bundler/bundler):
+
+```shell
+bundle install
+```
+
+### Initialize the database
+
+```shell
+rails db:create db:migrate db:seed
+```
+
+## Running the Application
+
+```shell
+rails s
+```
+
+## Running Tests
+
+```shell
+rspec
+```
+
+## Run Tier Calibration Task After Ney Year Started
+
+```shell
+rake customers:calibrate_tier
+```
+
+## Run Customer Tier Archieve Task After Ney Year Started
+
+```shell
+rake 'customers:archieve_tier[:year]'
+```
+
