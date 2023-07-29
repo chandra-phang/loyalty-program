@@ -2,7 +2,7 @@
 
 class CustomerService
   def list_customers
-    Customer.recently_updated
+    Customer.includes(:tier).recently_updated
   end
 
   def find_or_create_customer(customer_ref, name)
