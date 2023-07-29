@@ -5,7 +5,7 @@
 ### Clone the repository
 
 ```shell
-git clone git@https://github.com/chandra-phang/loyalty-program.git
+git clone git@github.com:chandra-phang/loyalty-program.git
 cd loyalty-program
 ```
 
