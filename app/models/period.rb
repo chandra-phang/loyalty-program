@@ -22,7 +22,7 @@ class Period < ApplicationRecord
     find_by!(year: Time.zone.now.year)
   end
 
-  def self.next_period
-    find_by!(year: Time.zone.now.year + 1)
+  def next_period
+    Period.find_by!(year: year + 1)
   end
 end
